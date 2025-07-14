@@ -66,7 +66,7 @@ class MainController extends Controller
         ], [
             'telefono.required' => 'Opps! el teléfono es obligatorio. Por favor, verifica el número e intenta nuevamente.',
             'telefono.numeric' => 'Opps! el teléfono debe contener solo números. Por favor, verifica el número e intenta nuevamente.',
-            'telefono.max' => 'Opps! el teléfono no puede tener más de 10 dígitos. Por favor, verifica el número e intenta nuevamente.',
+            'telefono.digits' => 'Opps! el teléfono no puede tener más de 10 dígitos. Por favor, verifica el número e intenta nuevamente.',
             'telefono.unique' => 'Opps! este teléfono ya está registrado en nuestro sistema. Por favor, verifica el número e intenta nuevamente.'
         ]);
 

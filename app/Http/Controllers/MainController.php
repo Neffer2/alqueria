@@ -64,9 +64,9 @@ class MainController extends Controller
         $validator = Validator::make($request->all(), [
             'telefono' => 'required|numeric|digits:10|unique:users'
         ], [
-            'telefono.required' => 'Opps! el teléfono es obligatorio. Por favor, verifica el número e intenta nuevamente.',
-            'telefono.numeric' => 'Opps! el teléfono debe contener solo números. Por favor, verifica el número e intenta nuevamente.',
-            'telefono.digits' => 'Opps! el teléfono no puede tener más de 10 dígitos. Por favor, verifica el número e intenta nuevamente.',
+            'telefono.required' => 'Opps! el campo teléfono es obligatorio. Por favor, verifica el número e intenta nuevamente.',
+            'telefono.numeric' => 'Opps! el campo teléfono debe contener solo números. Por favor, verifica el número e intenta nuevamente.',
+            'telefono.digits' => 'Opps! el campo teléfono debe tener 10 dígitos. Por favor, verifica el número e intenta nuevamente.',
             'telefono.unique' => 'Opps! este teléfono ya está registrado en nuestro sistema. Por favor, verifica el número e intenta nuevamente.'
         ]);
 
@@ -82,6 +82,32 @@ class MainController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Teléfono válido'
+        ], 200);
+    }
+
+    public function docValidation(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'documento' => 'required|numeric|max_digits:10|unique:users'
+        ], [
+            'documento.required' => 'Opps! el campo documento es obligatorio. Por favor, verifica el número e intenta nuevamente.',
+            'documento.numeric' => 'Opps! el campo documento solo debe contener números. Por favor, verifica el número e intenta nuevamente.',
+            'documento.max_digits' => 'Opps! el campo documento no puede tener más de 10 caracteres. Por favor, verifica el número e intenta nuevamente.',
+            'documento.unique' => 'Opps! este documento ya está registrado en nuestro sistema. Por favor, verifica el número e intenta nuevamente.'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error de validación',
+                'errors' => $validator->errors(),
+                'first_error' => $validator->errors()->first()
+            ], 422);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'documento válido'
         ], 200);
     }
 }

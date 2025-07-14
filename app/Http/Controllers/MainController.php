@@ -110,4 +110,30 @@ class MainController extends Controller
             'message' => 'documento válido'
         ], 200);
     }
+
+    public function emailValidation(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|max:255|unique:users'
+        ], [
+            'email.required' => 'Opps! el campo correo es obligatorio. Por favor, verifica el correo e intenta nuevamente.',
+            'email.email' => 'Opps! el campo correo debe ser una dirección de correo electrónico válida. Por favor, verifica el correo e intenta nuevamente.',
+            'email.max' => 'Opps! el campo correo no puede tener más de 255 caracteres. Por favor, verifica el correo e intenta nuevamente.',
+            'email.unique' => 'Opps! este correo ya está registrado en nuestro sistema. Por favor, verifica el correo e intenta nuevamente.'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error de validación',
+                'errors' => $validator->errors(),
+                'first_error' => $validator->errors()->first()
+            ], 422);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Email válido'
+        ], 200);
+    }
 }

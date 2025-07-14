@@ -26,3 +26,4 @@ Route::post('/factura-register', [MainController::class, 'factura_register'])->n
 // VALIDATIONS
 Route::post('/tel-validation', [MainController::class, 'telValidation'])->name('tel-validation');
 Route::post('/doc-validation', [MainController::class, 'docValidation'])->name('doc-validation');
+Route::post('/email-validation', [MainController::class, 'emailValidation'])->name('email-validation');

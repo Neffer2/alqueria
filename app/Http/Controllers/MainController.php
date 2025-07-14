@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Factura;
+use Illuminate\Support\Facades\Validator;
 
 class MainController extends Controller
 {
@@ -55,5 +56,32 @@ class MainController extends Controller
         ]);
 
         return response()->json(['message' => 'Factura registrada exitosamente', 'factura_id' => $factura->id], 201);
+    }
+
+    // VALIDATIONS
+    public function telValidation(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'telefono' => 'required|numeric|max:11|unique:users'
+        ], [
+            'telefono.required' => 'Opps! el teléfono es obligatorio',
+            'telefono.numeric' => 'Opps! el teléfono debe contener solo números',
+            'telefono.max' => 'Opps! el teléfono no puede tener más de 11 dígitos',
+            'telefono.unique' => 'Opps! este teléfono ya está registrado en nuestro sistema'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error de validación',
+                'errors' => $validator->errors(),
+                'first_error' => $validator->errors()->first()
+            ], 422);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Teléfono válido'
+        ], 200);
     }
 }

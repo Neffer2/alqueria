@@ -62,7 +62,7 @@ class MainController extends Controller
     public function telValidation(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'telefono' => 'required|numeric|max:10|unique:users'
+            'telefono' => 'required|numeric|digits:10|unique:users'
         ], [
             'telefono.required' => 'Opps! el teléfono es obligatorio. Por favor, verifica el número e intenta nuevamente.',
             'telefono.numeric' => 'Opps! el teléfono debe contener solo números. Por favor, verifica el número e intenta nuevamente.',

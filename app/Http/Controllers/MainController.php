@@ -26,6 +26,7 @@ class MainController extends Controller
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
             'telefono' => 'required|string|max:11|unique:users',
+            'ciudad' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'documento' => 'required|string|max:20|unique:users'
         ], [
@@ -49,7 +50,10 @@ class MainController extends Controller
             'nombre.max' => 'Opps! el campo nombre no puede tener más de 255 caracteres. Por favor, verifica el nombre e intenta nuevamente.',
             'apellido.max' => 'Opps! el campo apellido no puede tener más de 255 caracteres. Por favor, verifica el apellido e intenta nuevamente.',
             'telefono.max' => 'Opps! el campo teléfono no puede tener más de 11 caracteres. Por favor, verifica el número e intenta nuevamente.',
-            'documento.max' => 'Opps! el campo documento no puede tener más de 20 caracteres. Por favor, verifica el número e intenta nuevamente.'
+            'documento.max' => 'Opps! el campo documento no puede tener más de 20 caracteres. Por favor, verifica el número e intenta nuevamente.',
+            'ciudad.required' => 'Opps! el campo ciudad es obligatorio. Por favor, verifica la ciudad e intenta nuevamente.',
+            'ciudad.string' => 'Opps! el campo ciudad debe ser una cadena de texto. Por favor, verifica la ciudad e intenta nuevamente.',
+            'ciudad.max' => 'Opps! el campo ciudad no puede tener más de 255 caracteres. Por favor, verifica la ciudad e intenta nuevamente.'
         ]);
 
         if ($validator->fails()) {
@@ -65,6 +69,7 @@ class MainController extends Controller
             'nombre' => $request->nombre,
             'apellido' => $request->apellido,
             'telefono' => $request->telefono,
+            'ciudad' => $request->ciudad,
             'email' => $request->email,
             'documento' => $request->documento,
         ]);

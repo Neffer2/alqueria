@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('apellido');
             $table->string('telefono')->unique();
+            $table->string('ciudad');
             $table->string('email')->unique();
             $table->string('documento')->unique();
             $table->boolean('terminos')->default(true);

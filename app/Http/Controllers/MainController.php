@@ -22,13 +22,44 @@ class MainController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
             'telefono' => 'required|string|max:11|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'documento' => 'required|string|max:20|unique:users'
+        ], [
+            'nombre.required' => 'Opps! el campo nombre es obligatorio. Por favor, verifica el nombre e intenta nuevamente.',
+            'apellido.required' => 'Opps! el campo apellido es obligatorio. Por favor, verifica el apellido e intenta nuevamente.',
+            'telefono.required' => 'Opps! el campo teléfono es obligatorio. Por favor, verifica el número e intenta nuevamente.',
+            'email.required' => 'Opps! el campo correo es obligatorio. Por favor, verifica el correo e intenta nuevamente.',
+            'documento.required' => 'Opps! el campo documento es obligatorio. Por favor, verifica el número e intenta nuevamente.',
+            'telefono.unique' => 'Opps! este teléfono ya está registrado en nuestro sistema. Por favor, verifica el número e intenta nuevamente.',
+            'email.unique' => 'Opps! este correo ya está registrado en nuestro sistema. Por favor, verifica el correo e intenta nuevamente.',
+            'documento.unique' => 'Opps! este documento ya está registrado en nuestro sistema. Por favor, verifica el número e intenta nuevamente.',
+            'telefono.max' => 'Opps! el campo teléfono no puede tener más de 11 caracteres. Por favor, verifica el número e intenta nuevamente.',
+            'email.max' => 'Opps! el campo correo no puede tener más de 255 caracteres. Por favor, verifica el correo e intenta nuevamente.',
+            'documento.max' => 'Opps! el campo documento no puede tener más de 20 caracteres. Por favor, verifica el número e intenta nuevamente.',
+            'nombre.string' => 'Opps! el campo nombre debe ser una cadena de texto. Por favor, verifica el nombre e intenta nuevamente.',
+            'apellido.string' => 'Opps! el campo apellido debe ser una cadena de texto. Por favor, verifica el apellido e intenta nuevamente.',
+            'telefono.string' => 'Opps! el campo teléfono debe ser una cadena de texto. Por favor, verifica el número e intenta nuevamente.',
+            'email.string' => 'Opps! el campo correo debe ser una cadena de texto. Por favor, verifica el correo e intenta nuevamente.',
+            'documento.string' => 'Opps! el campo documento debe ser una cadena de texto. Por favor, verifica el número e intenta nuevamente.',
+            'email.email' => 'Opps! el campo correo debe ser una dirección de correo electrónico válida. Por favor, verifica el correo e intenta nuevamente.',
+            'nombre.max' => 'Opps! el campo nombre no puede tener más de 255 caracteres. Por favor, verifica el nombre e intenta nuevamente.',
+            'apellido.max' => 'Opps! el campo apellido no puede tener más de 255 caracteres. Por favor, verifica el apellido e intenta nuevamente.',
+            'telefono.max' => 'Opps! el campo teléfono no puede tener más de 11 caracteres. Por favor, verifica el número e intenta nuevamente.',
+            'documento.max' => 'Opps! el campo documento no puede tener más de 20 caracteres. Por favor, verifica el número e intenta nuevamente.'
         ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error de validación',
+                'errors' => $validator->errors(),
+                'first_error' => $validator->errors()->first()
+            ], 422);
+        }
 
         $user = User::create([
             'nombre' => $request->nombre,
@@ -38,7 +69,12 @@ class MainController extends Controller
             'documento' => $request->documento,
         ]);
 
-        return response()->json(['message' => 'Usuario registrado exitosamente', 'user_id' => $user->id, 'nombre' => $user->nombre], 201);
+        return response()->json([
+            'success' => true,
+            'message' => 'usuario registrado exitosamente',
+            'user_id' => $user->id,
+            'nombre' => $user->nombre
+        ], 200);
     }
 
     public function factura_register(Request $request)

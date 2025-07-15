@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreign('id_user')->references('id')->on('users');
             $table->foreignId('id_user');
-            $table->string('num_factura')->required()->unique();
+            $table->string('num_factura')->nullable()->unique();
             $table->text('foto_factura')->required();
+            $table->text('foto_producto')->required();
             $table->foreign('id_estado')->references('id')->on('estados');
             $table->foreignId('id_estado')->default(2);
             $table->timestamps();

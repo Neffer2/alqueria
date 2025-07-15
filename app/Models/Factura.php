@@ -14,6 +14,7 @@ class Factura extends Model
         'id_user',
         'num_factura',
         'foto_factura',
+        'foto_producto',
         'id_estado'
     ];
 }

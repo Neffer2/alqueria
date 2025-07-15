@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Factura;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class MainController extends Controller
 {
@@ -84,6 +86,36 @@ class MainController extends Controller
         ], 200);
     }
 
+    public function register_factura(Request $request){
+        $validator = Validator::make($request->all(), [
+            'foto_factura' => 'required|string',
+            'foto_producto' => 'required|string'
+        ], [
+            'foto_factura.required' => 'Opps! el campo foto_factura es obligatorio. Por favor, verifica la foto e intenta nuevamente.',
+            'foto_producto.required' => 'Opps! el campo foto_producto es obligatorio. Por favor, verifica la foto e intenta nuevamente.'
+        ]);
+
+        $factura = Factura::create([
+            'id_user' => $request->id_user,
+            'foto_factura' => $this->uploadFile($request->foto_factura),
+            'foto_producto' => $this->uploadFile($request->foto_producto)
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error de validación',
+                'errors' => $validator->errors(),
+                'first_error' => $validator->errors()->first()
+            ], 422);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'factura registrada exitosamente',
+        ], 200);
+    }
+
     public function factura_register(Request $request)
     {
         $request->validate([
@@ -99,6 +131,17 @@ class MainController extends Controller
         ]);
 
         return response()->json(['message' => 'Factura registrada exitosamente', 'factura_id' => $factura->id], 201);
+    }
+
+    public function uploadFile($url)
+    {
+        $imageContent = file_get_contents($url);
+
+        // Crea un nombre único para la imagen
+        $path = "public/photos/" . Str::uuid() . ".jpg";
+        Storage::disk('local')->put($path, $imageContent);
+
+        return $path;
     }
 
     // VALIDATIONS

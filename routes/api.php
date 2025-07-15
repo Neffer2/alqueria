@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/user-registered/{documento}', [MainController::class, 'user_registered'])->name('user.registered');
 Route::post('/register', [MainController::class, 'register'])->name('register');
-Route::post('/factura-register', [MainController::class, 'factura_register'])->name('factura-register');
+Route::post('/factura-register', [MainController::class, 'register_factura'])->name('factura-register');
 
 // VALIDATIONS
 Route::post('/tel-validation', [MainController::class, 'telValidation'])->name('tel-validation');

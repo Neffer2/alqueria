@@ -25,35 +25,37 @@ class MainController extends Controller
         $validator = Validator::make($request->all(), [
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
-            'telefono' => 'required|string|max:11|unique:users',
+            'telefono' => 'required|numeric|digits:10|unique:users',
             'ciudad' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'documento' => 'required|string|max:20|unique:users'
+            'email' => 'required|email|max:255|unique:users',
+            'documento' => 'required|numeric|max_digits:10|unique:users'
         ], [
             'nombre.required' => 'Opps! el campo nombre es obligatorio. Por favor, verifica el nombre e intenta nuevamente.',
-            'apellido.required' => 'Opps! el campo apellido es obligatorio. Por favor, verifica el apellido e intenta nuevamente.',
-            'telefono.required' => 'Opps! el campo teléfono es obligatorio. Por favor, verifica el número e intenta nuevamente.',
-            'email.required' => 'Opps! el campo correo es obligatorio. Por favor, verifica el correo e intenta nuevamente.',
-            'documento.required' => 'Opps! el campo documento es obligatorio. Por favor, verifica el número e intenta nuevamente.',
-            'telefono.unique' => 'Opps! este teléfono ya está registrado en nuestro sistema. Por favor, verifica el número e intenta nuevamente.',
-            'email.unique' => 'Opps! este correo ya está registrado en nuestro sistema. Por favor, verifica el correo e intenta nuevamente.',
-            'documento.unique' => 'Opps! este documento ya está registrado en nuestro sistema. Por favor, verifica el número e intenta nuevamente.',
-            'telefono.max' => 'Opps! el campo teléfono no puede tener más de 11 caracteres. Por favor, verifica el número e intenta nuevamente.',
-            'email.max' => 'Opps! el campo correo no puede tener más de 255 caracteres. Por favor, verifica el correo e intenta nuevamente.',
-            'documento.max' => 'Opps! el campo documento no puede tener más de 20 caracteres. Por favor, verifica el número e intenta nuevamente.',
             'nombre.string' => 'Opps! el campo nombre debe ser una cadena de texto. Por favor, verifica el nombre e intenta nuevamente.',
-            'apellido.string' => 'Opps! el campo apellido debe ser una cadena de texto. Por favor, verifica el apellido e intenta nuevamente.',
-            'telefono.string' => 'Opps! el campo teléfono debe ser una cadena de texto. Por favor, verifica el número e intenta nuevamente.',
-            'email.string' => 'Opps! el campo correo debe ser una cadena de texto. Por favor, verifica el correo e intenta nuevamente.',
-            'documento.string' => 'Opps! el campo documento debe ser una cadena de texto. Por favor, verifica el número e intenta nuevamente.',
-            'email.email' => 'Opps! el campo correo debe ser una dirección de correo electrónico válida. Por favor, verifica el correo e intenta nuevamente.',
             'nombre.max' => 'Opps! el campo nombre no puede tener más de 255 caracteres. Por favor, verifica el nombre e intenta nuevamente.',
+            
+            'apellido.required' => 'Opps! el campo apellido es obligatorio. Por favor, verifica el apellido e intenta nuevamente.',
+            'apellido.string' => 'Opps! el campo apellido debe ser una cadena de texto. Por favor, verifica el apellido e intenta nuevamente.',
             'apellido.max' => 'Opps! el campo apellido no puede tener más de 255 caracteres. Por favor, verifica el apellido e intenta nuevamente.',
-            'telefono.max' => 'Opps! el campo teléfono no puede tener más de 11 caracteres. Por favor, verifica el número e intenta nuevamente.',
-            'documento.max' => 'Opps! el campo documento no puede tener más de 20 caracteres. Por favor, verifica el número e intenta nuevamente.',
+
             'ciudad.required' => 'Opps! el campo ciudad es obligatorio. Por favor, verifica la ciudad e intenta nuevamente.',
             'ciudad.string' => 'Opps! el campo ciudad debe ser una cadena de texto. Por favor, verifica la ciudad e intenta nuevamente.',
-            'ciudad.max' => 'Opps! el campo ciudad no puede tener más de 255 caracteres. Por favor, verifica la ciudad e intenta nuevamente.'
+            'ciudad.max' => 'Opps! el campo ciudad no puede tener más de 255 caracteres. Por favor, verifica la ciudad e intenta nuevamente.',
+
+            'telefono.required' => 'Opps! el campo teléfono es obligatorio. Por favor, verifica el número e intenta nuevamente.',
+            'telefono.numeric' => 'Opps! el campo teléfono debe contener solo números. Por favor, verifica el número e intenta nuevamente.',
+            'telefono.digits' => 'Opps! el campo teléfono debe tener 10 dígitos. Por favor, verifica el número e intenta nuevamente.',
+            'telefono.unique' => 'Opps! este teléfono ya está registrado en nuestro sistema. Por favor, verifica el número e intenta nuevamente.',
+
+            'documento.required' => 'Opps! el campo documento es obligatorio. Por favor, verifica el número e intenta nuevamente.',
+            'documento.numeric' => 'Opps! el campo documento solo debe contener números. Por favor, verifica el número e intenta nuevamente.',
+            'documento.max_digits' => 'Opps! el campo documento no puede tener más de 10 caracteres. Por favor, verifica el número e intenta nuevamente.',
+            'documento.unique' => 'Opps! este documento ya está registrado en nuestro sistema. Por favor, verifica el número e intenta nuevamente.',
+
+            'email.required' => 'Opps! el campo correo es obligatorio. Por favor, verifica el correo e intenta nuevamente.',
+            'email.email' => 'Opps! el campo correo debe ser una dirección de correo electrónico válida. Por favor, verifica el correo e intenta nuevamente.',
+            'email.max' => 'Opps! el campo correo no puede tener más de 255 caracteres. Por favor, verifica el correo e intenta nuevamente.',
+            'email.unique' => 'Opps! este correo ya está registrado en nuestro sistema. Por favor, verifica el correo e intenta nuevamente.'
         ]);
 
         if ($validator->fails()) {

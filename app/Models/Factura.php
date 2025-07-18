@@ -17,4 +17,9 @@ class Factura extends Model
         'foto_producto',
         'id_estado'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }

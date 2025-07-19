@@ -14,7 +14,7 @@
             title="Participa en la promo Back To School de Alquería y Cine Colombia">
     </div>
 
-    <a href="https://wa.me/573142636890?text=Hola!%20Quisiera%20saber%20más%20sobre%20la%20promo%20BackToSchool%20Alquería." target="_blank" class="whatsapp-btn" aria-label="Contáctanos por WhatsApp para la promo Back To School Alquería">
+    <a href="https://wa.me/573142636890?text=Hola%2C%20quiero%20participar!" target="_blank" class="whatsapp-btn" aria-label="Contáctanos por WhatsApp para la promo Back To School Alquería">
         <i class="bi bi-whatsapp"></i>
     </a>
     @endsection

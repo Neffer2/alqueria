@@ -1,7 +1,13 @@
 * {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
     box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #343a40;
 }
 
 .desktop-container {
@@ -15,14 +21,14 @@
 #welcome-image-desk {
     display: block;
     margin: 0 auto;
-    max-width: 100%;
+    width: 100%;
     height: auto;
 }
 
 #welcome-image-mobile {
     display: block;
     margin: 0 auto;
-    max-width: 100%;
+    width: 100%;
     height: auto;
 }
 

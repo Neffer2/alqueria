@@ -9,7 +9,7 @@
 
     <div class="mobile-container">
         <img id="welcome-image-mobile" 
-            src="{{ asset('assets/mobile/mobile.png') }}" 
+            src="{{ asset('assets/mobile/mobile_.png') }}" 
             alt="Promo Alquería Regreso a Clases: Tu oportunidad de ir al cine gratis" 
             title="Participa en la promo Back To School de Alquería y Cine Colombia">
     </div>

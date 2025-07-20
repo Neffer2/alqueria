@@ -17,9 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
+Route::get('/dashboard__', function () {
     return view('backoffice.dashboard');
-})->name('dashboard');
+})->name('dashboard__');
 
 Route::get('/facturas', function () {
     return view('backoffice.facturas');

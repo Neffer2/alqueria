@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+    return view('backoffice.dashboard');
+})->name('dashboard');
+
 Route::get('/facturas', function () {
     return view('backoffice.facturas');
-});
+})->name('facturas');
+
+Route::get('/premios', function () {
+    return view('backoffice.premios');
+})->name('premios');

@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('facturas', function (Blueprint $table) {
+        Schema::create('registro_premios', function (Blueprint $table) {
             $table->id();
             $table->foreign('id_user')->references('id')->on('users');
             $table->foreignId('id_user');
-            $table->string('num_factura')->nullable()->unique();
-            $table->text('foto_factura')->required();
-            $table->text('foto_producto')->required();
+            $table->foreign('id_factura')->references('id')->on('facturas');
+            $table->foreignId('id_factura');
+            $table->text('num_premio')->nullable();
             $table->foreign('id_estado')->references('id')->on('estados');
             $table->foreignId('id_estado')->default(2);
             $table->timestamps();
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('facturas');
+        Schema::dropIfExists('registro_premios');
     }
 };

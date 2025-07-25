@@ -4,6 +4,102 @@
     box-sizing: border-box;
 }
 
+.tc-desk {
+    color: transparent;
+    width: 500px;
+    position: absolute;
+    bottom: -21%;
+    right: 2%;
+}
+
+.tc-mobil {
+    color: transparent;
+    width: 100px;
+    position: absolute;
+    bottom: -25%;
+    right: 40%;
+}
+
+/**************************************/
+
+.tooltip-left {
+    top: 5px;
+    bottom: auto;
+    right: 128%;
+}
+
+.tooltip .tooltiptext {
+    font-family: Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    /* visibility: hidden; */
+    position: absolute;
+    width: 140px;
+    background-color: #dc3545;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0 !important;
+    border-radius: 6px;
+    /* Position the tooltip */
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip-left::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent #dc3545;
+}
+
+.tooltip-left-wp {
+    top: 15px;
+    bottom: auto;
+    right: 128%;
+}
+
+.tooltip-wp .tooltiptext-wp {
+    font-family: Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    position: absolute;
+    width: 140px;
+    background-color: #25D366;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0 !important;
+    border-radius: 6px;
+    /* Position the tooltip */
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip-wp:hover .tooltiptext-wp {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip-left-wp::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent #25D366;
+}
+
+/**************************************/
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f9fa;
@@ -55,6 +151,29 @@ body {
     text-decoration: none;
 }
 
+.tc-btn {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    z-index: 9999;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #dc3545;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    animation: breathe-red 2s ease-in-out infinite;
+}
+
+.tc-btn i {
+    color: #fff;
+    font-size: 24px;
+    animation: beat 2s ease-in-out infinite;
+    text-decoration: none;
+}
+
 /*Estilos con animation contorno respirando*/
 @keyframes breathe {
     0% {
@@ -62,6 +181,18 @@ body {
     }
     70% {
         box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+}
+
+@keyframes breathe-red {
+    0% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(220, 53, 69, 0);
     }
     100% {
         box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
@@ -86,8 +217,26 @@ body {
         display: none;
     }
 
+    .tc-desk {
+        display: none;
+    }
+
     .mobile-container {
         display: block;
+    }
+
+    .tc-mobil {
+        display: block;
+    }
+
+    .tooltiptext-wp {
+        visibility: visible;
+        opacity: 1 !important;
+    }
+
+    .tooltiptext {
+        visibility: visible;
+        opacity: 1 !important;
     }
 }
 
